@@ -21,10 +21,9 @@ import {
 
 interface FocusedKeyGeneratorProps {
   templateId: string
-  showTemplates?: boolean
 }
 
-export function FocusedKeyGenerator({ templateId, showTemplates = false }: FocusedKeyGeneratorProps) {
+export function FocusedKeyGenerator({ templateId }: FocusedKeyGeneratorProps) {
   const defaultTemplate = KEY_TEMPLATES.find((t) => t.id === templateId) || KEY_TEMPLATES[0]
 
   const [selectedTemplate, setSelectedTemplate] = useState<KeyTemplate>(defaultTemplate)
@@ -119,20 +118,23 @@ export function FocusedKeyGenerator({ templateId, showTemplates = false }: Focus
     }
   }
 
-  const handleTemplateSelect = (template: KeyTemplate) => {
-    setSelectedTemplate(template)
-
-    if (template.id !== "custom") {
-      setCustomLength(template.length)
-      setPrefix(template.prefix || "")
-      setSuffix(template.suffix || "")
-    }
+  const resetToDefault = () => {
+    setSelectedTemplate(defaultTemplate)
+    setCustomLength(defaultTemplate.length)
+    setPrefix(defaultTemplate.prefix || "")
+    setSuffix(defaultTemplate.suffix || "")
+    setIsAdvancedOpen(false)
 
     setTimeout(() => {
-      if (template.id === "uuid") {
+      if (defaultTemplate.id === "uuid") {
         setGeneratedKey(generateUUID())
       } else {
-        const key = generateKey(template.length, template.charset, template.prefix, template.suffix)
+        const key = generateKey(
+          defaultTemplate.length,
+          defaultTemplate.charset,
+          defaultTemplate.prefix,
+          defaultTemplate.suffix,
+        )
         setGeneratedKey(key)
       }
     }, 0)
@@ -186,33 +188,18 @@ export function FocusedKeyGenerator({ templateId, showTemplates = false }: Focus
           </div>
         </div>
 
-        <Button onClick={handleGenerate} className="w-full gap-2" disabled={isGenerating}>
-          <RefreshCw className={cn("w-4 h-4", isGenerating && "animate-spin")} />
-          Generate New Key
-        </Button>
-      </div>
-
-      {showTemplates && (
-        <div className="space-y-3">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Other Templates</span>
-          <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
-            {KEY_TEMPLATES.filter((t) => t.id !== "custom").map((template) => (
-              <button
-                key={template.id}
-                onClick={() => handleTemplateSelect(template)}
-                className={cn(
-                  "flex flex-col items-center gap-1.5 p-3 rounded-lg border text-center transition-all",
-                  "hover:border-primary/50 hover:bg-primary/5",
-                  selectedTemplate.id === template.id ? "border-primary bg-primary/10" : "border-border bg-background",
-                )}
-              >
-                <span className="text-lg">{template.icon}</span>
-                <span className="text-xs font-medium truncate w-full">{template.name}</span>
-              </button>
-            ))}
-          </div>
+        <div className="flex gap-2">
+          <Button onClick={handleGenerate} className="flex-1 gap-2" disabled={isGenerating}>
+            <RefreshCw className={cn("w-4 h-4", isGenerating && "animate-spin")} />
+            Generate New Key
+          </Button>
+          {isAdvancedOpen && (
+            <Button variant="outline" onClick={resetToDefault} className="shrink-0 bg-transparent">
+              Reset
+            </Button>
+          )}
         </div>
-      )}
+      </div>
 
       <Collapsible open={isAdvancedOpen} onOpenChange={setIsAdvancedOpen}>
         <CollapsibleTrigger className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors w-full py-2 border-t border-border pt-4">

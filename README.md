@@ -2,9 +2,25 @@
 
 A powerful, open-source **secret key generator** built with Next.js for generating cryptographically secure secret keys for **Django**, **FastAPI**, **JWT**, **Flask**, **Laravel**, **Rails**, **NextAuth**, and other frameworks. Generate random, secure passwords with custom security settings—all processed **100% client-side** in your browser.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/rehmatworks/secret-key-generator)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-seckeygen.com-blue?style=for-the-badge)](https://seckeygen.com)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
+
+---
+
+## Deploy Your Own
+
+Deploy your own instance of Secret Key Generator with one click:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/rehmatworks/secret-key-generator)
+
+This will:
+1. Clone the repository to your GitHub account
+2. Create a new Vercel project
+3. Deploy the application automatically
+
+No configuration required—it works out of the box!
 
 ---
 
@@ -271,3 +287,26 @@ secret key generator, django secret key generator, django secret generator onlin
 ---
 
 **[Generate Your Secret Key Now at seckeygen.com](https://seckeygen.com)**
+
+## Credits & Acknowledgments
+
+This project was built with the help of amazing open-source technologies and tools:
+
+| Technology | Description |
+|------------|-------------|
+| [Vercel v0](https://v0.dev) | AI-powered development assistant used to build this tool |
+| [Next.js 16](https://nextjs.org) | React framework for production-grade applications |
+| [Tailwind CSS v4](https://tailwindcss.com) | Utility-first CSS framework |
+| [shadcn/ui](https://ui.shadcn.com) | Beautifully designed, accessible UI components |
+| [Lucide React](https://lucide.dev) | Beautiful, consistent icon set |
+| [Radix UI](https://radix-ui.com) | Unstyled, accessible component primitives |
+| [Vercel](https://vercel.com) | Cloud platform for deployment and hosting |
+
+### Special Thanks
+
+- **[Vercel](https://vercel.com)** for providing the incredible v0 AI development tool and seamless deployment platform
+- The open-source community for the amazing tools and libraries that made this project possible
+
+---
+
+Made with v0 by Vercel. Deployed on Vercel.

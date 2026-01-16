@@ -1,11 +1,40 @@
 import { KeyGenerator } from "@/components/key-generator"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Shield, Github, Lock, Cpu, Star } from "lucide-react"
+import { Shield, Github, Lock, Cpu } from "lucide-react"
 import Link from "next/link"
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Secret Key Generator",
+    url: "https://seckeygen.com",
+    description:
+      "Free online secret key generator for Django, FastAPI, JWT, Flask, Laravel, Rails, and more. Generate cryptographically secure keys with customizable length and characters.",
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Any",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    featureList: [
+      "Django SECRET_KEY generation",
+      "FastAPI secret key generation",
+      "JWT secret key generation",
+      "Flask SECRET_KEY generation",
+      "Laravel APP_KEY generation",
+      "Rails secret_key_base generation",
+      "NextAuth NEXTAUTH_SECRET generation",
+      "Custom key configuration",
+      "100% client-side generation",
+    ],
+  }
+
   return (
     <main className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
       <header className="border-b border-border">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -17,11 +46,10 @@ export default function Home() {
               href="https://github.com/rehmatworks/secret-key-generator"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="View on GitHub"
             >
-              <Github className="w-4 h-4" />
-              <Star className="w-3 h-3" />
-              <span className="hidden sm:inline">Star on GitHub</span>
+              <Github className="w-5 h-5" />
             </a>
             <ThemeToggle />
           </div>
@@ -33,6 +61,62 @@ export default function Home() {
           {/* Main Generator - takes 2 columns on desktop */}
           <div className="lg:col-span-2">
             <KeyGenerator />
+
+            <div className="mt-8 space-y-6 rounded-xl border border-border bg-card p-6">
+              <div>
+                <h2 className="text-lg font-semibold text-foreground mb-3">About Secret Key Generator</h2>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Secret Key Generator is a free, open-source tool for generating cryptographically secure secret keys
+                  for your web applications. Whether you&apos;re building with Django, FastAPI, Flask, Laravel, Rails,
+                  or any other framework, this tool helps you create strong, random keys that meet each framework&apos;s
+                  requirements.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-base font-medium text-foreground mb-2">Why Use This Generator?</h3>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                    <span>
+                      <strong className="text-foreground">100% Client-Side:</strong> All keys are generated in your
+                      browser using the Web Crypto API. No data is ever sent to any server.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                    <span>
+                      <strong className="text-foreground">Framework-Specific:</strong> Pre-configured templates for
+                      Django (50 chars), FastAPI (32 chars), JWT (64 chars), Laravel (base64:32 bytes), Rails (128 hex),
+                      and more.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                    <span>
+                      <strong className="text-foreground">Customizable:</strong> Advanced settings let you control key
+                      length, character sets, prefixes, suffixes, and excluded characters.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                    <span>
+                      <strong className="text-foreground">Open Source:</strong> The source code is available on GitHub.
+                      Audit it, fork it, or contribute to it.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-base font-medium text-foreground mb-2">Supported Frameworks</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Django SECRET_KEY, FastAPI secret keys, JWT signing secrets, Flask SECRET_KEY, Laravel APP_KEY, Rails
+                  secret_key_base, NextAuth NEXTAUTH_SECRET, AES-256 encryption keys, API keys, UUIDs, and secure
+                  passwords.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Sidebar with info cards */}
@@ -67,28 +151,38 @@ export default function Home() {
               </h3>
               <div className="space-y-1 text-xs">
                 {[
-                  { name: "Django", slug: "django-secret-key-generator", spec: "50 chars", icon: "🐍" },
-                  { name: "FastAPI", slug: "fastapi-secret-key-generator", spec: "32 chars", icon: "⚡" },
-                  { name: "JWT", slug: "jwt-secret-key-generator", spec: "64 chars", icon: "🔐" },
-                  { name: "Flask", slug: "flask-secret-key-generator", spec: "24 chars", icon: "🍶" },
-                  { name: "Laravel", slug: "laravel-key-generator", spec: "base64:32", icon: "🔺" },
-                  { name: "Rails", slug: "rails-secret-key-generator", spec: "128 hex", icon: "💎" },
-                  { name: "NextAuth", slug: "nextauth-secret-generator", spec: "32 chars", icon: "▲" },
+                  { name: "Django", slug: "django-secret-key-generator", spec: "50 chars" },
+                  { name: "FastAPI", slug: "fastapi-secret-key-generator", spec: "32 chars" },
+                  { name: "JWT", slug: "jwt-secret-key-generator", spec: "64 chars" },
+                  { name: "Flask", slug: "flask-secret-key-generator", spec: "24 chars" },
+                  { name: "Laravel", slug: "laravel-key-generator", spec: "base64:32" },
+                  { name: "Rails", slug: "rails-secret-key-generator", spec: "128 hex" },
+                  { name: "NextAuth", slug: "nextauth-secret-generator", spec: "32 chars" },
                 ].map((framework, i, arr) => (
                   <Link
                     key={framework.slug}
                     href={`/${framework.slug}`}
                     className={`flex items-center justify-between py-2 hover:bg-secondary/50 px-2 -mx-2 rounded transition-colors ${i < arr.length - 1 ? "border-b border-border" : ""}`}
                   >
-                    <span className="flex items-center gap-2 text-muted-foreground hover:text-foreground">
-                      <span>{framework.icon}</span>
-                      <span>{framework.name}</span>
-                    </span>
+                    <span className="text-muted-foreground hover:text-foreground">{framework.name}</span>
                     <span className="font-mono text-muted-foreground">{framework.spec}</span>
                   </Link>
                 ))}
               </div>
             </div>
+
+            <Link
+              href="/random-password-generator"
+              className="block rounded-lg border border-primary/50 bg-primary/5 p-4 hover:bg-primary/10 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <Lock className="w-5 h-5 text-primary" />
+                <div>
+                  <p className="text-sm font-medium">Password Generator</p>
+                  <p className="text-xs text-muted-foreground">Generate secure random passwords</p>
+                </div>
+              </div>
+            </Link>
 
             <a
               href="https://github.com/rehmatworks/secret-key-generator"
@@ -100,7 +194,7 @@ export default function Home() {
                 <Github className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                 <div>
                   <p className="text-sm font-medium group-hover:text-foreground transition-colors">Open Source</p>
-                  <p className="text-xs text-muted-foreground">Star us on GitHub</p>
+                  <p className="text-xs text-muted-foreground">View on GitHub</p>
                 </div>
               </div>
             </a>

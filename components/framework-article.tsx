@@ -9,8 +9,50 @@ interface FrameworkArticleProps {
 }
 
 export function FrameworkArticle({ content }: FrameworkArticleProps) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: `${content.name} Secret Key Generator`,
+    url: `https://seckeygen.com/${content.slug}`,
+    description: content.description,
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Any",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  }
+
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to Generate a ${content.name} Secret Key`,
+    description: content.article.intro,
+    step: [
+      {
+        "@type": "HowToStep",
+        name: "Generate the key",
+        text: `Click the "Generate New Key" button to create a cryptographically secure ${content.name} secret key.`,
+      },
+      {
+        "@type": "HowToStep",
+        name: "Copy the key",
+        text: "Click the copy button to copy the generated key to your clipboard.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Add to your project",
+        text: `Add the key to your ${content.name} project as ${content.envVar} environment variable.`,
+      },
+    ],
+  }
+
   return (
     <div className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
+
       <header className="border-b border-border">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link
@@ -39,8 +81,7 @@ export function FrameworkArticle({ content }: FrameworkArticleProps) {
           </div>
         </div>
 
-        {/* Generator Widget */}
-        <FocusedKeyGenerator templateId={content.templateId} showTemplates={true} />
+        <FocusedKeyGenerator templateId={content.templateId} />
 
         {/* Article Content */}
         <article className="space-y-8 prose prose-neutral dark:prose-invert max-w-none">
@@ -114,28 +155,33 @@ export function FrameworkArticle({ content }: FrameworkArticleProps) {
           </section>
         </article>
 
-        {/* Related Generators */}
         <section className="border-t border-border pt-8 space-y-4">
           <h2 className="text-lg font-semibold text-foreground">Other Secret Key Generators</h2>
+          <p className="text-sm text-muted-foreground">
+            Need to generate keys for a different framework? Visit our{" "}
+            <Link href="/" className="text-primary hover:underline">
+              main secret key generator
+            </Link>{" "}
+            for Django, FastAPI, JWT, Flask, Laravel, Rails, NextAuth, and more.
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { name: "Django", slug: "django-secret-key-generator", icon: "🐍" },
-              { name: "FastAPI", slug: "fastapi-secret-key-generator", icon: "⚡" },
-              { name: "JWT", slug: "jwt-secret-key-generator", icon: "🔐" },
-              { name: "Flask", slug: "flask-secret-key-generator", icon: "🍶" },
-              { name: "Laravel", slug: "laravel-key-generator", icon: "🔺" },
-              { name: "Rails", slug: "rails-secret-key-generator", icon: "💎" },
-              { name: "NextAuth", slug: "nextauth-secret-generator", icon: "▲" },
+              { name: "Django", slug: "django-secret-key-generator" },
+              { name: "FastAPI", slug: "fastapi-secret-key-generator" },
+              { name: "JWT", slug: "jwt-secret-key-generator" },
+              { name: "Flask", slug: "flask-secret-key-generator" },
+              { name: "Laravel", slug: "laravel-key-generator" },
+              { name: "Rails", slug: "rails-secret-key-generator" },
+              { name: "NextAuth", slug: "nextauth-secret-generator" },
             ]
               .filter((item) => item.slug !== content.slug)
               .map((item) => (
                 <Link
                   key={item.slug}
                   href={`/${item.slug}`}
-                  className="flex items-center gap-2 p-3 rounded-lg border border-border bg-card hover:border-primary/50 hover:bg-primary/5 transition-colors"
+                  className="flex items-center justify-center p-3 rounded-lg border border-border bg-card hover:border-primary/50 hover:bg-primary/5 transition-colors text-sm font-medium"
                 >
-                  <span>{item.icon}</span>
-                  <span className="text-sm font-medium">{item.name}</span>
+                  {item.name}
                 </Link>
               ))}
           </div>
