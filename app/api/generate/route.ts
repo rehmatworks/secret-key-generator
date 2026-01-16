@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
       {
         status: 429,
         headers: {
-          "X-RateLimit-Limit": "30",
+          "X-RateLimit-Limit": "5",
           "X-RateLimit-Remaining": "0",
           "X-RateLimit-Reset": String(Math.ceil(resetIn / 1000)),
           "Retry-After": String(Math.ceil(resetIn / 1000)),
@@ -56,13 +56,13 @@ export async function GET(request: NextRequest) {
       }
       return NextResponse.json(
         {
-          keys: count === 1 ? keys[0] : keys,
+          keys,
           template: "uuid",
           length: 36,
         },
         {
           headers: {
-            "X-RateLimit-Limit": "30",
+            "X-RateLimit-Limit": "5",
             "X-RateLimit-Remaining": String(remaining),
           },
         },
@@ -145,7 +145,7 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json(
     {
-      keys: count === 1 ? keys[0] : keys,
+      keys,
       ...(templateUsed && { template: templateUsed }),
       length,
       charsetSize: charset.length,
@@ -153,7 +153,7 @@ export async function GET(request: NextRequest) {
     },
     {
       headers: {
-        "X-RateLimit-Limit": "30",
+        "X-RateLimit-Limit": "5",
         "X-RateLimit-Remaining": String(remaining),
       },
     },
