@@ -1,6 +1,6 @@
 import { KeyGenerator } from "@/components/key-generator"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Shield, Github, Lock, Cpu, Code } from "lucide-react"
+import { Shield, Github, Lock, Cpu, Code, KeyRound, Wrench } from "lucide-react"
 import Link from "next/link"
 
 export default function Home() {
@@ -37,10 +37,10 @@ export default function Home() {
 
       <header className="border-b border-border">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Shield className="w-5 h-5 text-primary" />
             <span className="font-semibold">Secret Key Generator</span>
-          </div>
+          </Link>
           <div className="flex items-center gap-4">
             <Link
               href="/random-password-generator"
@@ -177,34 +177,48 @@ export default function Home() {
               </div>
             </div>
 
-            {/* API Docs Link */}
-            <Link
-              href="/api-docs"
-              className="block rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors group"
-            >
-              <div className="flex items-center gap-3">
-                <Code className="w-5 h-5 text-primary" />
-                <div>
-                  <p className="text-sm font-medium group-hover:text-foreground transition-colors">REST API</p>
-                  <p className="text-xs text-muted-foreground">Generate keys programmatically</p>
-                </div>
+            {/* Developers Section */}
+            <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+              <h3 className="font-medium text-sm flex items-center gap-2">
+                <Code className="w-4 h-4 text-primary" />
+                Developers
+              </h3>
+              <div className="space-y-1 text-xs">
+                <Link
+                  href="/api-docs"
+                  className="flex items-center justify-between py-2 hover:bg-secondary/50 px-2 -mx-2 rounded transition-colors border-b border-border"
+                >
+                  <span className="text-muted-foreground hover:text-foreground">REST API</span>
+                  <span className="text-muted-foreground">Docs</span>
+                </Link>
+                <a
+                  href="https://github.com/rehmatworks/secret-key-generator"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between py-2 hover:bg-secondary/50 px-2 -mx-2 rounded transition-colors"
+                >
+                  <span className="text-muted-foreground hover:text-foreground">Source Code</span>
+                  <Github className="w-3.5 h-3.5 text-muted-foreground" />
+                </a>
               </div>
-            </Link>
+            </div>
 
-            <a
-              href="https://github.com/rehmatworks/secret-key-generator"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors group"
-            >
-              <div className="flex items-center gap-3">
-                <Github className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-                <div>
-                  <p className="text-sm font-medium group-hover:text-foreground transition-colors">Open Source</p>
-                  <p className="text-xs text-muted-foreground">View on GitHub</p>
-                </div>
+            {/* Other Tools Section */}
+            <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+              <h3 className="font-medium text-sm flex items-center gap-2">
+                <Wrench className="w-4 h-4 text-primary" />
+                Other Tools
+              </h3>
+              <div className="space-y-1 text-xs">
+                <Link
+                  href="/random-password-generator"
+                  className="flex items-center justify-between py-2 hover:bg-secondary/50 px-2 -mx-2 rounded transition-colors"
+                >
+                  <span className="text-muted-foreground hover:text-foreground">Password Generator</span>
+                  <KeyRound className="w-3.5 h-3.5 text-muted-foreground" />
+                </Link>
               </div>
-            </a>
+            </div>
 
             <div className="rounded-lg border border-dashed border-border p-4 text-center">
               <p className="text-xs text-muted-foreground">

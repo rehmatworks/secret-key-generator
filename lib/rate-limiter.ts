@@ -1,5 +1,5 @@
 // In-memory rate limiter per IP
-// Allows 30 requests per second per IP
+// Allows 5 requests per second per IP
 
 interface RateLimitEntry {
   count: number
@@ -9,7 +9,7 @@ interface RateLimitEntry {
 const rateLimitMap = new Map<string, RateLimitEntry>()
 
 const WINDOW_MS = 1000 // 1 second window
-const MAX_REQUESTS = 30 // 30 requests per second
+const MAX_REQUESTS = 5 // 5 requests per second (was 30)
 
 // Clean up old entries every 10 seconds
 setInterval(() => {
