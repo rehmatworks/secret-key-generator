@@ -1,6 +1,6 @@
 import { KeyGenerator } from "@/components/key-generator"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Shield, Github, Lock, Cpu } from "lucide-react"
+import { Shield, Github, Lock, Cpu, Star } from "lucide-react"
 import Link from "next/link"
 
 export default function Home() {
@@ -14,12 +14,14 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3">
             <a
-              href="https://github.com"
+              href="https://github.com/rehmatworks/secret-key-generator"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
               <Github className="w-4 h-4" />
+              <Star className="w-3 h-3" />
+              <span className="hidden sm:inline">Star on GitHub</span>
             </a>
             <ThemeToggle />
           </div>
@@ -87,6 +89,21 @@ export default function Home() {
                 ))}
               </div>
             </div>
+
+            <a
+              href="https://github.com/rehmatworks/secret-key-generator"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors group"
+            >
+              <div className="flex items-center gap-3">
+                <Github className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                <div>
+                  <p className="text-sm font-medium group-hover:text-foreground transition-colors">Open Source</p>
+                  <p className="text-xs text-muted-foreground">Star us on GitHub</p>
+                </div>
+              </div>
+            </a>
 
             <div className="rounded-lg border border-dashed border-border p-4 text-center">
               <p className="text-xs text-muted-foreground">
