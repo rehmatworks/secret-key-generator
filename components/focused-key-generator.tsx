@@ -99,6 +99,23 @@ export function FocusedKeyGenerator({ templateId }: FocusedKeyGeneratorProps) {
     handleGenerate()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    if (isAdvancedOpen) {
+      handleGenerate()
+    }
+  }, [
+    customLength,
+    includeLowercase,
+    includeUppercase,
+    includeNumbers,
+    includeSymbols,
+    customChars,
+    excludeChars,
+    prefix,
+    suffix,
+    isAdvancedOpen,
+  ]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleCopy = async () => {
     if (!generatedKey || generatedKey.startsWith("Error")) return
 
