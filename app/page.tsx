@@ -1,6 +1,6 @@
 import { KeyGenerator } from "@/components/key-generator"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Shield, Github, Lock, Cpu } from "lucide-react"
+import { Shield, Github, Lock, Cpu, Code } from "lucide-react"
 import Link from "next/link"
 
 export default function Home() {
@@ -41,7 +41,13 @@ export default function Home() {
             <Shield className="w-5 h-5 text-primary" />
             <span className="font-semibold">Secret Key Generator</span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
+            <Link
+              href="/random-password-generator"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Password Generator
+            </Link>
             <a
               href="https://github.com/rehmatworks/secret-key-generator"
               target="_blank"
@@ -171,15 +177,16 @@ export default function Home() {
               </div>
             </div>
 
+            {/* API Docs Link */}
             <Link
-              href="/random-password-generator"
-              className="block rounded-lg border border-primary/50 bg-primary/5 p-4 hover:bg-primary/10 transition-colors"
+              href="/api-docs"
+              className="block rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors group"
             >
               <div className="flex items-center gap-3">
-                <Lock className="w-5 h-5 text-primary" />
+                <Code className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-sm font-medium">Password Generator</p>
-                  <p className="text-xs text-muted-foreground">Generate secure random passwords</p>
+                  <p className="text-sm font-medium group-hover:text-foreground transition-colors">REST API</p>
+                  <p className="text-xs text-muted-foreground">Generate keys programmatically</p>
                 </div>
               </div>
             </Link>
@@ -210,6 +217,25 @@ export default function Home() {
 
       <footer className="border-t border-border mt-8">
         <div className="max-w-5xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-center gap-6 mb-3">
+            <Link
+              href="/random-password-generator"
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Password Generator
+            </Link>
+            <Link href="/api-docs" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+              API Documentation
+            </Link>
+            <a
+              href="https://github.com/rehmatworks/secret-key-generator"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              GitHub
+            </a>
+          </div>
           <p className="text-center text-xs text-muted-foreground">
             Free online secret key generator for Django, FastAPI, JWT, Flask, Laravel, Rails, and more.
           </p>

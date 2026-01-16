@@ -94,6 +94,24 @@ export function KeyGenerator() {
     handleGenerate()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    // Only auto-regenerate when advanced settings are open
+    if (isAdvancedOpen) {
+      handleGenerate()
+    }
+  }, [
+    customLength,
+    includeLowercase,
+    includeUppercase,
+    includeNumbers,
+    includeSymbols,
+    customChars,
+    excludeChars,
+    prefix,
+    suffix,
+    isAdvancedOpen,
+  ]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleCopy = async () => {
     if (!generatedKey || generatedKey.startsWith("Error")) return
 
