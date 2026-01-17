@@ -6,7 +6,7 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "Secret Key Generator API Documentation | Free REST API for Generating Secure Keys",
   description:
-    "Free REST API for generating secure secret keys for Django, FastAPI, JWT, Laravel, Rails, and more. No API key required. Rate limited to 30 requests per second.",
+    "Free REST API for generating secure secret keys for Django, FastAPI, JWT, Laravel, Rails, and more. No API key required. Rate limited to 5 requests per second.",
   keywords: [
     "secret key api",
     "key generator api",
@@ -156,7 +156,7 @@ export default function ApiDocsPage() {
               <Lock className="w-4 h-4 text-primary" />
               <span className="font-medium text-sm">Rate Limited</span>
             </div>
-            <p className="text-xs text-muted-foreground">30 requests per second per IP address to prevent abuse.</p>
+            <p className="text-xs text-muted-foreground">5 requests per second per IP address to prevent abuse.</p>
           </div>
           <div className="rounded-lg border border-border bg-card p-4">
             <div className="flex items-center gap-2 mb-2">
@@ -165,6 +165,22 @@ export default function ApiDocsPage() {
             </div>
             <p className="text-xs text-muted-foreground">Simple GET requests with JSON responses.</p>
           </div>
+        </div>
+
+        {/* Server-Side Generation */}
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 mb-8">
+          <h3 className="text-sm font-medium mb-2 text-amber-600 dark:text-amber-400">Server-Side Generation</h3>
+          <p className="text-xs text-muted-foreground">
+            Unlike our web-based tools which generate keys entirely in your browser, the REST API generates keys
+            server-side using Node.js&apos;s cryptographically secure{" "}
+            <code className="px-1 py-0.5 bg-secondary rounded text-[10px]">crypto.randomBytes()</code> function.{" "}
+            <strong className="text-foreground">We never store or log any generated secrets.</strong> If you prefer 100%
+            client-side generation, use our{" "}
+            <Link href="/" className="text-primary hover:underline">
+              web-based generator
+            </Link>{" "}
+            instead.
+          </p>
         </div>
 
         {/* Base URL */}
@@ -323,11 +339,11 @@ export default function ApiDocsPage() {
           <div className="rounded-lg border border-border bg-card p-4 space-y-3">
             <p className="text-sm text-muted-foreground">
               The API is rate limited to{" "}
-              <strong className="text-foreground">30 requests per second per IP address</strong>. Rate limit information
+              <strong className="text-foreground">5 requests per second per IP address</strong>. Rate limit information
               is included in response headers:
             </p>
-            <CodeBlock>{`X-RateLimit-Limit: 30
-X-RateLimit-Remaining: 29`}</CodeBlock>
+            <CodeBlock>{`X-RateLimit-Limit: 5
+X-RateLimit-Remaining: 4`}</CodeBlock>
             <p className="text-sm text-muted-foreground">
               If you exceed the rate limit, you&apos;ll receive a{" "}
               <code className="px-1 py-0.5 bg-secondary rounded text-xs">429 Too Many Requests</code> response:

@@ -48,9 +48,10 @@ No installation required. Generate secure keys instantly in your browser.
 
 ### Security Features
 
-- **100% Client-Side Generation**: All keys are generated in your browser using the Web Crypto API. No data is ever sent to any server.
-- **Cryptographically Secure**: Uses `crypto.getRandomValues()` for true randomness.
-- **Zero Data Collection**: Your generated secrets never leave your device.
+- **100% Client-Side Generation**: All keys generated via the web interface are created in your browser using the Web Crypto API. No data is ever sent to any server.
+- **Server-Side API**: The REST API generates keys server-side using Node.js's cryptographically secure `crypto.randomBytes()`. **We never store or log any generated secrets.**
+- **Cryptographically Secure**: Uses `crypto.getRandomValues()` (browser) and `crypto.randomBytes()` (API) for true randomness.
+- **Zero Data Collection**: Your generated secrets are never stored, logged, or transmitted (web tools) or immediately discarded after response (API).
 - **Open Source**: Fully auditable codebase.
 
 ### Advanced Customization
@@ -210,7 +211,7 @@ npm start
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com)
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com)
 - **Icons**: [Lucide React](https://lucide.dev)
-- **Cryptography**: Web Crypto API (`crypto.getRandomValues()`)
+- **Cryptography**: Web Crypto API (`crypto.getRandomValues()`), Node.js's `crypto.randomBytes()`
 
 ---
 

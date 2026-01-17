@@ -92,6 +92,13 @@ export default function Home() {
                   <li className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                     <span>
+                      <strong className="text-foreground">REST API:</strong> Our API generates keys server-side using
+                      Node.js crypto module. We never store or log any generated secrets.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                    <span>
                       <strong className="text-foreground">Framework-Specific:</strong> Pre-configured templates for
                       Django (50 chars), FastAPI (32 chars), JWT (64 chars), Laravel (base64:32 bytes), Rails (128 hex),
                       and more.
